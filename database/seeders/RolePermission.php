@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class RolePermission extends Seeder
 {
@@ -14,18 +16,13 @@ class RolePermission extends Seeder
      */
     public function run()
     {
-        $user = User::create([
-            'name' => 'Douglas', 
-            'email' => 'douglas@gmail.com',
-            'password' => bcrypt('senha')
-        ]);
-    
-        $role = Role::create(['name' => 'porteiro']);
-     
-        $permissions = Permission::pluck('id','id')->all();
-   
+        // Fetch all permissions
+        $permissions = Permission::all();
+
+        // Create or find the 'porteiro' role
+        $role = Role::firstOrCreate(['name' => 'porteiro']);
+
+        // Sync permissions to the role
         $role->syncPermissions($permissions);
-     
-        $user->assignRole([$role->id]);
     }
 }

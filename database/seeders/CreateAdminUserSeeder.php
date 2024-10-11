@@ -9,22 +9,6 @@ use Spatie\Permission\Models\Permission;
   
 class CreateAdminUserSeeder extends Seeder
 {
-<<<<<<< Updated upstream
-    public function run()
-    {
-        // Ensure the role 'porteiro' exists
-        $porteiroRole = Role::firstOrCreate(['name' => 'porteiro']);
-        
-        // Create a user
-        $user = User::create([
-            'name' => 'Douglas',
-            'email' => 'douglas@gmail.com',
-            'password' => bcrypt('senha'),
-        ]);
-
-        // Assign the 'porteiro' role to the user
-        $user->assignRole('porteiro');
-=======
     /**
      * Run the database seeds.
      *
@@ -45,6 +29,5 @@ class CreateAdminUserSeeder extends Seeder
         $role->syncPermissions($permissions);
      
         $user->assignRole([$role->id]);
->>>>>>> Stashed changes
     }
 }

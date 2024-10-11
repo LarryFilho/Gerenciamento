@@ -11,10 +11,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             PermissionTableSeeder::class,
-<<<<<<< Updated upstream
             RolePermission::class,
-=======
->>>>>>> Stashed changes
             CreateAdminUserSeeder::class,  
             UserSeeder::class,
             AptoSeeder::class, 

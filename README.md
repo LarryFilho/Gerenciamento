@@ -43,7 +43,6 @@ Instalar o Breeze
 composer require laravel/breeze --dev
 
 php artisan breeze:install
-php artisan migrate
 ```
 
 Instalar o Spatie

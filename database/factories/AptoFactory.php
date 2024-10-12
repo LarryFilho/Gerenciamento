@@ -11,7 +11,7 @@ class AptoFactory extends Factory
     public function definition(): array
     {
         return [
-            'unidade' => fake()->unique()->numberBetween(1, 15),
+            'unidade' => fake()->unique()->numberBetween(1, 10),
         ];
     }
 }

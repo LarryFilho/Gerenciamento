@@ -38,13 +38,6 @@ Gerar a key do projeto Laravel
 php artisan key:generate
 ```
 
-Instalar o Breeze
-```sh
-composer require laravel/breeze --dev
-
-php artisan breeze:install
-```
-
 Instalar o Spatie
 ```sh
 composer require spatie/laravel-permission

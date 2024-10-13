@@ -5,7 +5,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h2>Sistema de Registo para novas Encomendas</h2>
+                        <h2>Sistema de Registo de Encomendas</h2>
                     </div>
                     <div class="card-body">
                         <a href="{{ url('cadastro/create') }}" class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline" title="Adicionar nova Encomenda">
@@ -20,7 +20,7 @@
                                         <th>#</th>
                                         <th>Nome do Morador</th>
                                         <th>Apartamento</th>
-                                        <th>Horário de Chegada</th>
+                                        <th>Dia e Mês da entrega</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -29,7 +29,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->apto }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($item->horario_chegada)->format('H:i') }}</td>
+                                        <td>{{ $item->dia }} / {{ $item->mes }}</td>
   
                                         <td>
                                             <a href="{{ route('cadastro.show', $item->id) }}" title="Ver Encomenda"><button class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">

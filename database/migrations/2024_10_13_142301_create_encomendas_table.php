@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer("apto");
             $table->time("horario_chegada")->nullable(); ;
             $table->text("informacoes_adicionais")->nullable();
+            $table->string("dia");
+            $table->string("mes");
             $table->timestamps();
         });
     }

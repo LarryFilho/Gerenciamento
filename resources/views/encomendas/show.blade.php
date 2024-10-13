@@ -8,6 +8,7 @@
     <div class="card-body">
         <h5 class="card-title">Nome do Destinatário: {{ $encomendas->name }}</h5>
         <h5 class="card-text">Apartamento: {{ $encomendas->apto }}</h5>
+        <h5 class="card-text">Dia e Mês da entrega: {{ $encomendas->dia }} / {{ $encomendas->mes }}</h5>
         <h5 class="card-text">Horário da entrega: {{ \Carbon\Carbon::parse($encomendas->horario_chegada)->format('H:i') }}</h5>
         <h5 class="card-text">Informações Adicionais: {{ $encomendas->informacoes_adicionais }}</h5>
     </div>

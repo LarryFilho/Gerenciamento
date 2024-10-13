@@ -44,16 +44,18 @@ class EncomendaController extends Controller
             'apto' => 'required|integer',
             'horario_chegada' => 'required|date_format:H:i',
             'informacoes_adicionais' => 'nullable|string',
+            'dia' => 'required|string|max:255',
+            'mes' => 'required|string|max:255',
         ]);
 
         $aptoExists = Apto::where('unidade', $validated['apto'])->exists();
-    
+
         if (!$aptoExists) {
-            return redirect()->route('cadastro')->withErrors(['apto' => 'Apto invalid']);
+            return redirect()->route('cadastro')->withErrors(['apto' => 'Apto inválido']);
         }
 
         Encomenda::create($validated);
-    
+
         return redirect('cadastro')->with('flash_message', 'Encomenda Adicionada!');
     }
 
@@ -77,8 +79,10 @@ class EncomendaController extends Controller
      */
     public function edit($id)
     {
-        $encomenda = Encomenda::find($id);
-        return view('encomendas.edit')->with('encomendas', $encomenda);
+        $encomendas = Encomenda::find($id);
+        $aptos = Apto::all();
+
+        return view('encomendas.edit', compact('encomendas', 'aptos'));
     }
 
     /**
@@ -94,7 +98,11 @@ class EncomendaController extends Controller
 
             $validated = $request->validate([
                 'name' => 'required|string|max:255',
-                'apto' => 'required|integer|exists:aptos,unidade',
+                'apto' => 'required|integer',
+                'horario_chegada' => 'required|date_format:H:i',
+                'informacoes_adicionais' => 'nullable|string',
+                'dia' => 'required|string|max:255',
+                'mes' => 'required|string|max:255', 
             ]);
 
             $encomenda->update($validated);

@@ -11,5 +11,5 @@ class Encomenda extends Model
 
     protected $table = 'encomendas';
     protected $primaryKey = 'id';
-    protected $fillable = ['name', 'apto', 'horario_chegada', 'informacoes_adicionais'];
+    protected $fillable = ['name', 'apto', 'horario_chegada', 'informacoes_adicionais', 'dia', 'mes'];
 }

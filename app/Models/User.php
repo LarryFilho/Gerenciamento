@@ -24,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -44,4 +45,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Método para verificar se o usuário tem determinado papel
+    public function hasRole($role)
+    {
+        return $this->role === $role;
+    }
 }

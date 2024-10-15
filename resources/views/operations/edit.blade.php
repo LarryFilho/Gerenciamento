@@ -26,8 +26,8 @@
             <div class="form-group">
                 <label for="operation_type">Operação:</label>
                 <select class="form-control" id="operation_type" name="operation_type" required>
-                    <option value="load" {{ $operation->operation_type == 'load' ? 'selected' : '' }}>Carregar</option>
-                    <option value="unload" {{ $operation->operation_type == 'unload' ? 'selected' : '' }}>Descarregar</option>
+                    <option value="Carregar" {{ $operation->operation_type == 'Carregar' ? 'selected' : '' }}>Carregar</option>
+                    <option value="Descarregar" {{ $operation->operation_type == 'Descarregar' ? 'selected' : '' }}>Descarregar</option>
                 </select>
             </div>
 
@@ -71,8 +71,6 @@
             <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
             <i class="fa fa-trash-o" aria-hidden="true"></i> Atualizar
             </button>
-
-            <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">Update Operation</button>
         </form>
     </div>
 @endsection

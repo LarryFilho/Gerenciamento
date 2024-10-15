@@ -13,7 +13,7 @@ class OperationController extends Controller
     {
         $request->validate([
             'product_name' => 'required|string|max:255',
-            'operation_type' => 'required|in:load,unload',
+            'operation_type' => 'required|in:Carregar,Descarregar',
             'quantity' => 'required|integer|min:1',
             'description' => 'nullable|string|max:255',
             'horario_chegada' => 'required|date_format:H:i',
@@ -52,7 +52,7 @@ class OperationController extends Controller
     {
         $request->validate([
             'product_name' => 'required|string|max:255',
-            'operation_type' => 'required|in:load,unload',
+            'operation_type' => 'required|in:Carregar,Descarregar',
             'quantity' => 'required|integer|min:1',
             'description' => 'nullable|string|max:255',
             'horario_chegada' => 'required|date_format:H:i',

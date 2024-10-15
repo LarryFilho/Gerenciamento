@@ -14,8 +14,8 @@
             <label>Tipo de Operação:</label><br>
             <select name="operation_type" id="operation_type" class="form-control" required>
                 <option value="">Selecione o tipo de operação</option>
-                <option value="load">Carregar</option>
-                <option value="unload">Descarregar</option>
+                <option value="Carregar">Carregar</option>
+                <option value="Descarregar">Descarregar</option>
             </select><br>
 
             <label>Quantidade:</label><br>

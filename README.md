@@ -18,40 +18,49 @@ APP_URL=http://localhost:8080
 DB_PASSWORD=root
 ```
 
-
 Suba os containers do projeto
 ```sh
 docker compose up -d
 ```
-
 
 Acessar o container
 ```sh
 docker compose exec app bash
 ```
 
-
 Instalar as dependências do projeto
 ```sh
 composer install
 ```
-
 
 Gerar a key do projeto Laravel
 ```sh
 php artisan key:generate
 ```
 
-Instalar o Breeze
+Instalar o Spatie
 ```sh
-composer require laravel/breeze --dev
+composer require spatie/laravel-permission
 
-php artisan breeze:install
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+```
+
+Arrumar Banco de Dados
+```sh
+php artisan optimize:clear
+
+php artisan config:clear
+```
+
+Inicializar os Seeders
+```sh
 php artisan migrate
+
+php artisan migrate:fresh --seed --seeder=DatabaseSeeder
+```
+
+Rodar o npm
+```sh
 npm install
 npm run dev
 ```
-### Como criar tela de login no Laravel (ATENÇÃO LER DESCERIÇÃO DOS VIDEOS):
-
-- Criação login sem node: [https://youtu.be/V2s2toQNMG0](https://youtu.be/V2s2toQNMG0)
-- Criação login com node: [https://youtu.be/UhOYeYoK3Bc](https://youtu.be/UhOYeYoK3Bc)

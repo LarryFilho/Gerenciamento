@@ -56,7 +56,21 @@ Route::post('/operations', [OperationController::class, 'store'])->name('operati
 Route::get('/operations', [OperationController::class, 'operationsindex'])->name('operations.index');
 
 Route::middleware('auth')->group(function () {
-    Route::resource('operations', OperationController::class);
-    // Adicione a rota para detalhes
-    Route::get('operations/{operation}', [OperationController::class, 'show'])->name('operations.show');
+
+Route::resource('operations', OperationController::class);
+ 
+Route::get('operations/{operation}', [OperationController::class, 'show'])->name('operations.show');
 });
+use App\Http\Controllers\VisitorController;
+
+Route::resource('visitors', VisitorController::class)->middleware('auth');
+
+Route::get('visitors/{visitor}', [VisitorController::class, 'show'])->name('visitors.show');
+
+use App\Http\Controllers\ResidentController;
+
+Route::resource('residents', ResidentController::class);
+
+use App\Http\Controllers\OccurrenceController;
+
+Route::resource('occurrences', OccurrenceController::class);

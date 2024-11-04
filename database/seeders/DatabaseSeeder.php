@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
             CreateAdminUserSeeder::class, 
             RolePermission::class, 
             UserSeeder::class,
-            AptoSeeder::class, 
+            AptoSeeder::class,
+            AreaSeeder::class, 
         ]);
     }
 }

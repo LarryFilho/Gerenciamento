@@ -13,15 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('aptos')) {
-            Schema::create('aptos', function (Blueprint $table) {
-                $table->id();
-                $table->integer('unidade'); // Adjust type if needed
-                $table->timestamps();
-            });
-        }
+        Schema::create('areas', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
     }
-    
 
     /**
      * Reverse the migrations.
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('apto');
+        Schema::dropIfExists('areas');
     }
 };

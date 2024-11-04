@@ -47,20 +47,29 @@ class ComumController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'area_id' => 'required|exists:areas,id', 
+            'area_id' => 'required|exists:areas,id',
             'resident_id' => 'nullable|exists:residents,id',
             'informacoes_adicionais' => 'nullable|string',
-            'data' => 'required|date|before_or_equal:today',
+            'data' => 'required|date|after_or_equal:today',
         ]);
-
-            $resident = Resident::find($validated['resident_id']);
-            $validated['resident_apto'] = $resident->id;
     
-        // Ensure you're only passing valid fields
-        Comum::create($validated); // Now, 'name_id' will contain the area name
+        $ReservaExistente = Comum::where('area_id', $validated['area_id'])
+            ->where('data', $validated['data'])
+            ->first();
+    
+        if ($ReservaExistente) {
+            return redirect()->back()->withErrors(['data' => 'Essa Área Comum já está Reservada nessa Data!']);
+        }
+    
+        $resident = Resident::find($validated['resident_id']);
+        $validated['resident_apto'] = $resident->id;
+    
+        Comum::create($validated);
     
         return redirect()->route('comum')->with('success', 'Reserva Realizada com Sucesso!');
     }
+    
+    
        
 
     /**
@@ -102,20 +111,28 @@ class ComumController extends Controller
         $comum = Comum::findOrFail($id);
     
         $validated = $request->validate([
-            'area_id' => 'required|exists:areas,id', 
+            'area_id' => 'required|exists:areas,id',
             'resident_id' => 'nullable|exists:residents,id',
             'informacoes_adicionais' => 'nullable|string',
-            'data' => 'required|date|before_or_equal:today',
+            'data' => 'required|date|after_or_equal:today',
         ]);
 
-            $resident = Resident::find($validated['resident_id']);
-            $validated['resident_apto'] = $resident->id;
-
+        $ReservaExistente = Comum::where('area_id', $validated['area_id'])
+            ->where('data', $validated['data'])
+            ->where('id', '!=', $id)
+            ->first();
+    
+        if ($ReservaExistente) {
+            return redirect()->back()->withErrors(['data' => 'Essa Área Comum já está Reservada nessa Data!']);
+        }
+    
+        $resident = Resident::find($validated['resident_id']);
+        $validated['resident_apto'] = $resident->id;
+    
         $comum->update($validated);
     
         return redirect()->route('comum')->with('success', 'Reserva Atualizada com Sucesso!');
     }
-    
 
     /**
      * Remove the specified resource from storage.

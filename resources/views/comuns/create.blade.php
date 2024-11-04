@@ -31,7 +31,7 @@
             <label>Data da Reserva:</label><br>
             <div class="row">
                 <div class="form-group">
-                <input type="date" name="data" id="data" class="form-control" max="{{ \Carbon\Carbon::today()->format('Y-m-d') }}" required>
+                <input type="date" name="data" id="data" class="form-control" min="{{ \Carbon\Carbon::today()->format('Y-m-d') }}" required>
                 </div>
             </div>
             <br>

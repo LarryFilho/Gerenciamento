@@ -31,7 +31,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->resident ? $item->resident->resident_name : 'N/A' }}</td>
                                         <td>{{ $item->resident ? $item->resident->apto : 'N/A' }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($item->data)->format('m/d') }}</td>
+                                        <td>{{ \Carbon\Carbon::parse($item->data)->format('d/m') }}</td>
                                         <td>{{ $item->area ? $item->area->name : 'N/A' }}</td>
   
                                         <td>

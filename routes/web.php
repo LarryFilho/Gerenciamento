@@ -31,7 +31,7 @@ Route::get('/cadastro/{id}/edit', [EncomendaController::class, 'edit'])->name('c
 
 
 
-Route::resource("/comum", ComumController::class);
+Route::resource("comum", ComumController::class);
 
 Route::get('/comum', [ComumController::class, 'index'])->name('comum');
 

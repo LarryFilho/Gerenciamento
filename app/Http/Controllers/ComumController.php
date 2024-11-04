@@ -52,11 +52,9 @@ class ComumController extends Controller
             'informacoes_adicionais' => 'nullable|string',
             'data' => 'required|date|before_or_equal:today',
         ]);
-    
-        if (!empty($validated['resident_id'])) {
+
             $resident = Resident::find($validated['resident_id']);
-            $validated['resident_apto'] = $resident->apto;
-        }
+            $validated['resident_apto'] = $resident->id;
     
         // Ensure you're only passing valid fields
         Comum::create($validated); // Now, 'name_id' will contain the area name
@@ -131,6 +129,6 @@ class ComumController extends Controller
     public function destroy($id)
     {
         Comum::destroy($id);
-        return redirect('dashboard')->with('flash_message', 'Deletada!'); 
+        return redirect('comum')->with('flash_message', 'Deletada!'); 
     }
 }

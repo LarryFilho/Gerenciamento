@@ -29,7 +29,7 @@
             <select name="apto" id="apto" class="form-control" required>
                 <option value="">Escolha um apartamento</option>
                      @foreach ($aptos as $apto)
-                <option value="{{ $apto->id }}">{{ $apto->unidade }}</option> 
+                <option value="{{ $apto->unidade }}">{{ $apto->unidade }}</option> 
                  @endforeach
             </select><br>
 

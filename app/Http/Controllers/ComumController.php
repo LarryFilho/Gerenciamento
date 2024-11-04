@@ -86,7 +86,8 @@ class ComumController extends Controller
         $comuns = Comum::find($id);
         $residents = Resident::all();
         $aptos = Apto::all();
-        return view('comuns.edit', compact('comuns', 'residents', 'aptos'));
+        $areas = Area::all();
+        return view('comuns.edit', compact('comuns', 'residents', 'aptos', 'areas'));
     }
 
     /**
@@ -101,22 +102,18 @@ class ComumController extends Controller
         $comum = Comum::findOrFail($id);
     
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'area_id' => 'required|exists:areas,id', 
             'resident_id' => 'nullable|exists:residents,id',
             'informacoes_adicionais' => 'nullable|string',
             'data' => 'required|date|before_or_equal:today',
         ]);
 
-        if (!empty($validated['resident_id'])) {
             $resident = Resident::find($validated['resident_id']);
-            $validated['resident_apto'] = $resident->apto;
-        } else {
-            $validated['resident_apto'] = null;
-        }
+            $validated['resident_apto'] = $resident->id;
 
         $comum->update($validated);
     
-        return redirect('dashboard')->with('flash_message', 'Atualizada!'); 
+        return redirect()->route('comum')->with('success', 'Reserva Atualizada com Sucesso!');
     }
     
 

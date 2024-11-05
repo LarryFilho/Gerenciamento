@@ -28,33 +28,68 @@
                         <br>
 
                         <a class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150" 
-                           href="{{ route('cadastro') }}">
+                           href="{{ url('cadastro') }}">
                             {{ __('Registrar uma nova Encomenda') }}
                         </a>
 
                         <br>
                         <br>
 
-                        <a class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150" 
-                           href="{{ url('operations') }}">
-                            {{ __('Sistema de Carga/Descarga') }}
-                        </a>
-                        
-                        <br>
-                        <br>
+                    <a class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150" 
+                       href="{{ url('visitors') }}">
+                        {{ __('Registro de Visitantes') }}
+                    </a>
 
-                        <a class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150" 
-                           href="{{ url('occurrences') }}">
-                            {{ __('Registro de Ocorrências') }}
-                        </a>
+                    <br>
+                    <br>
 
-                        <br>
-                        <br>
+                    <a class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150" 
+                       href="{{ url('cadastro') }}">
+                        {{ __('Registrar uma nova Encomenda') }}
+                    </a>
 
-                        <a class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150" 
+                    <br>
+                    <br>
+
+                    <a class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150" 
+                       href="{{ url('operations') }}">
+                        {{ __('Sistema de Carga/Descarga') }}
+                    </a>
+                    
+                    <br>
+                    <br>
+
+                    <a class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150" 
+                       href="{{ url('occurrences') }}">
+                        {{ __('Registro de Ocorrências') }}
+                    </a>
+
+                    <br>
+                    <br>
+                    
+                    <a class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150" 
                            href="{{ url('comum') }}">
                             {{ __('Áreas comuns') }}
                         </a>
+
+                    @else
+
+                    @php
+                        // Verifica se o usuário logado tem encomendas
+                        $encomendaCount = App\Models\Encomenda::where('user_id', auth()->id())->count();
+                    @endphp
+
+                    @if($encomendaCount > 0)
+                        <div class="alert alert-info text-center text-xl font-bold text-green-600 mb-4">
+                            Chegou uma encomenda para você na portaria!
+                        </div>
+                    @else
+                        <div class="alert alert-info text-center text-xl font-bold text-yellow-600 mb-4">
+                            Não há encomendas para você no momento.
+                        </div>
+                    @endif
+
+                        
                       
                     @endrole
                 </div>

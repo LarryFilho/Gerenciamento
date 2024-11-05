@@ -16,8 +16,7 @@ class Occurrence extends Model
         'resident_id',
         'resolved',
     ];
-
-    // Define o relacionamento com Resident
+   
     public function resident()
     {
         return $this->belongsTo(Resident::class);

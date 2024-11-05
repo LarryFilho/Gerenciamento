@@ -13,7 +13,7 @@ class CreateResidentsTable extends Migration
             $table->id();
             $table->string('resident_name');
             $table->string('resident_document')->unique();
-            $table->integer('apto');
+            $table->integer('apto');    
             $table->string('resident_contact');
             $table->string('address')->nullable();
             $table->date('move_in_date');

@@ -21,15 +21,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource("/cadastro", EncomendaController::class);
 
-Route::get('/cadastro', [EncomendaController::class, 'index'])->name('cadastro');
+Route::resource('cadastro', EncomendaController::class);
+
+Route::get('cadastro', [EncomendaController::class, 'index'])->name('cadastro.index');
 
 Route::get('/cadastro/create', [EncomendaController::class, 'create'])->name('cadastro.create');
 
 Route::get('/cadastro/{id}/edit', [EncomendaController::class, 'edit'])->name('cadastro.edit');
 
-
+Route::get('cadastro/{id}', [EncomendaController::class, 'show'])->name('encomendas.show');
 
 Route::resource("comum", ComumController::class);
 

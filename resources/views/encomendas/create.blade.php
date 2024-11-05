@@ -1,21 +1,30 @@
 @extends('encomendas.layout')
-@section('content')
 
+@section('content')
 <div class="card" style="margin:20px;">
     <div class="card-header">Criar nova Encomenda</div>
     <div class="card-body">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ url('cadastro') }}" method="post">
             {!! csrf_field() !!}
-            <label>Nome do Destinatário:</label><br>
-            <input type="text" name="name" id="name" class="form-control" required><br>
 
-            <label>Apartamento:</label><br>
-            <select name="apto" id="apto" class="form-control" required>
-                <option value="">Escolha um apartamento</option>
-                @foreach ($aptos as $apto)
-                    <option value="{{ $apto->unidade }}">{{ $apto->unidade }}</option>
+            <label>Destinatário:</label><br>
+            <select name="user_id" id="user_id" class="form-control" required>
+                <option value="">Escolha um destinatário</option>
+                @foreach ($users as $user)
+                    <option value="{{ $user->id }}">{{ $user->name }}</option>
                 @endforeach
-            </select><br>
+            </select>
+            <br>
 
             <label>Dia e Mês da Encomenda:</label><br>
             <div class="row">
@@ -48,13 +57,25 @@
             <label>Informações Adicionais:</label><br>
             <textarea name="informacoes_adicionais" id="informacoes_adicionais" rows="4" class="form-control" placeholder="Digite quaisquer informações adicionais que você desejar..."></textarea>
             <br>
-            
+
             <input type="submit" value="Registrar" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
-            <a class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline" href="{{ route('cadastro') }}">
+            <a class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline" href="{{ url('cadastro') }}">
                 {{ __('voltar') }}
             </a><br>
         </form>
     </div>
 </div>
 
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const userSelect = document.getElementById('user_id');
+
+        userSelect.addEventListener('change', function() {
+       
+        });
+    });
+</script>
 @stop
+
+@endsection

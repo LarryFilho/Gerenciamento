@@ -17,20 +17,21 @@
 
         <form action="{{ route('residents.store') }}" method="post" id="residentForm">
             {!! csrf_field() !!}
-            
             <label>Nome do Morador:</label><br>
             <input type="text" name="resident_name" id="resident_name" class="form-control" required><br>
 
             <label>Número do Documento:</label><br>
             <input type="text" name="resident_document" id="resident_document" class="form-control" required>
-            <small id="documentError" class="text-danger" style="display: none;">O documento deve ter exatamente 11 caracteres.</small><br>
+            <small id="documentError" class="text-danger" style="display: none;">O documento deve ter exatamente 10 ou 11 caracteres.</small><br>
 
             <label>Apartamento:</label><br>
             <select name="apto" id="apto" class="form-control" required>
                 <option value="">Escolha um apartamento</option>
-                     @foreach ($aptos as $apto)
-                <option value="{{ $apto->unidade }}">{{ $apto->unidade }}</option> 
-                 @endforeach
+                @foreach ($aptos as $apto)
+                    <option value="{{ $apto->unidade }}">
+                        {{ $apto->unidade }}
+                    </option>
+                @endforeach
             </select><br>
 
             <label>Contato:</label><br>
@@ -44,7 +45,6 @@
             <input type="date" name="move_in_date" id="move_in_date" class="form-control" required><br>
 
             <input type="submit" value="Registrar Morador" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
-            
             <a class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline" href="{{ url('residents') }}">
                 {{ __('Voltar') }}
             </a><br>
@@ -66,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
             value = value.slice(0, 11);
         }
 
+        // Formatação do documento
         if (value.length <= 9) {
             value = value.replace(/(\d{3})(\d)/, '$1.$2'); 
             value = value.replace(/(\d{3})(\d)/, '$1.$2');
@@ -110,7 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault(); 
             documentError.style.display = 'block'; 
         }
-   
         if (!isPhoneValid) {
             event.preventDefault();
             phoneError.style.display = 'block'; 

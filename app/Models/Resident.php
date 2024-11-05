@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Resident extends Model
 {
@@ -38,4 +39,14 @@ class Resident extends Model
 
         return preg_replace('/^(\d{3})(\d{3})(\d{3})$/', '$1.$2.$3', $this->resident_document);
     }
+    public function user()
+    {
+        return $this->hasOne(User::class, 'email', 'resident_name');
+    }
+    
+    public function encomendas()
+{
+    return $this->hasMany(Encomenda::class);
 }
+
+} 

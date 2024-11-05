@@ -3,122 +3,112 @@
 namespace App\Http\Controllers;
 
 use App\Models\Encomenda;
-use App\Models\Apto;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class EncomendaController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $encomenda = Encomenda::all();
-        return view ('encomendas.index')->with('encomendas', $encomenda);
+        // Buscando encomendas associadas aos usuários
+        $encomendas = Encomenda::with('user')->get();
+
+        return view('encomendas.index', compact('encomendas'));
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
-        {
-            $aptos = Apto::all();
-            return view('encomendas.create', compact('aptos'));
-        }
+    {
+        $users = User::all(); // Carrega todos os usuários
+
+        return view('encomendas.create', compact('users'));
+    }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'apto' => 'required|integer',
+            'user_id' => 'required|integer|exists:users,id',
             'horario_chegada' => 'required|date_format:H:i',
             'informacoes_adicionais' => 'nullable|string',
             'dia' => 'required|string|max:255',
             'mes' => 'required|string|max:255',
         ]);
 
-        $aptoExists = Apto::where('unidade', $validated['apto'])->exists();
+        $user = User::findOrFail($request->user_id);
 
-        if (!$aptoExists) {
-            return redirect()->route('cadastro')->withErrors(['apto' => 'Apto inválido']);
-        }
+        $encomenda = Encomenda::create([
+            'user_id' => $user->id,
+            'dia' => $request->dia,
+            'mes' => $request->mes,
+            'horario_chegada' => $request->horario_chegada,
+            'informacoes_adicionais' => $request->informacoes_adicionais,
+        ]);
 
-        Encomenda::create($validated);
+        // Aqui não criamos a notificação, mas podemos gravar a encomenda diretamente.
 
-        return redirect('cadastro')->with('flash_message', 'Encomenda Adicionada!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $encomenda = Encomenda::findOrFail($id);
-        return view('encomendas.show')->with('encomendas', $encomenda);
+        return redirect()->route('cadastro.index')->with('success', 'Encomenda registrada com sucesso.');
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $encomendas = Encomenda::find($id);
-        $aptos = Apto::all();
+        $encomenda = Encomenda::findOrFail($id);
+        $users = User::all(); // Carrega todos os usuários
 
-        return view('encomendas.edit', compact('encomendas', 'aptos'));
+        return view('encomendas.edit', compact('encomenda', 'users'));
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-        {
-            $encomenda = Encomenda::findOrFail($id);
+    {
+        $validated = $request->validate([
+            'user_id' => 'required|integer|exists:users,id', // Validação para user_id
+            'horario_chegada' => 'required|date_format:H:i',
+            'informacoes_adicionais' => 'nullable|string',
+            'dia' => 'required|string|max:255',
+            'mes' => 'required|string|max:255',
+        ]);
 
-            $validated = $request->validate([
-                'name' => 'required|string|max:255',
-                'apto' => 'required|integer',
-                'horario_chegada' => 'required|date_format:H:i',
-                'informacoes_adicionais' => 'nullable|string',
-                'dia' => 'required|string|max:255',
-                'mes' => 'required|string|max:255', 
-            ]);
+        $encomenda = Encomenda::findOrFail($id);
+        $user = User::findOrFail($request->user_id);
 
-            $encomenda->update($validated);
+        $encomenda->update([
+            'user_id' => $user->id,
+            'dia' => $request->dia,
+            'mes' => $request->mes,
+            'horario_chegada' => $request->horario_chegada,
+            'informacoes_adicionais' => $request->informacoes_adicionais,
+        ]);
 
-            return redirect('cadastro')->with('flash_message', 'Encomenda Atualizada!'); 
-        }
+        return redirect()->route('cadastro.index')->with('success', 'Encomenda atualizada com sucesso.');
+    }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         Encomenda::destroy($id);
-        return redirect('cadastro')->with('flash_message', 'Encomenda Deletada!'); 
+        return redirect()->route('cadastro.index')->with('flash_message', 'Encomenda deletada com sucesso!');
+    }
+    
+    public function show($id)
+    {
+        $encomenda = Encomenda::findOrFail($id); // Busca a encomenda pelo ID
+
+        return view('encomendas.show', compact('encomenda')); // Passa a encomenda para a view
     }
 }

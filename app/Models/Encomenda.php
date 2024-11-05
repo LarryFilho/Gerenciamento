@@ -9,7 +9,17 @@ class Encomenda extends Model
 {
     use HasFactory;
 
-    protected $table = 'encomendas';
-    protected $primaryKey = 'id';
-    protected $fillable = ['name', 'apto', 'horario_chegada', 'informacoes_adicionais', 'dia', 'mes'];
+    protected $fillable = [
+        'user_id',
+        'horario_chegada',
+        'informacoes_adicionais',
+        'dia',
+        'mes',
+    ];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

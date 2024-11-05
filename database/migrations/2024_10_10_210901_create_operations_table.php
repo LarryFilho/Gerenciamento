@@ -10,12 +10,11 @@ class CreateOperationsTable extends Migration
     {
         Schema::create('operations', function (Blueprint $table) {
             $table->id();
-            $table->string('product_name');            // Nome do produto (agora apenas um texto)
-            $table->unsignedBigInteger('user_id');    // Operador responsável
-            $table->string('operation_type');          // Tipo de operação (carga ou descarga)
-            $table->integer('quantity');                // Quantidade de itens
-            $table->text('description')->nullable();   // Descrição do produto
-            $table->timestamp('operation_date_time');  // Data e hora da operação
+            $table->string('product_name');          
+            $table->unsignedBigInteger('user_id');   
+            $table->string('operation_type');          
+            $table->text('description')->nullable();  
+            $table->timestamp('operation_date_time');  
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

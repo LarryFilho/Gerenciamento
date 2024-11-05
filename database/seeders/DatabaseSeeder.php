@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
             PermissionTableSeeder::class,
             CreateAdminUserSeeder::class, 
             RolePermission::class, 
-            UserSeeder::class,
             AptoSeeder::class, 
         ]);
     }

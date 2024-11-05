@@ -16,7 +16,6 @@ class Occurrence extends Model
         'resident_id',
         'resolved',
     ];
-
    
     public function resident()
     {

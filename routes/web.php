@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EncomendaController;
 use App\Http\Controllers\OperationController;
+use App\Http\Controllers\ComumController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,22 @@ Route::get('/cadastro', [EncomendaController::class, 'index'])->name('cadastro')
 Route::get('/cadastro/create', [EncomendaController::class, 'create'])->name('cadastro.create');
 
 Route::get('/cadastro/{id}/edit', [EncomendaController::class, 'edit'])->name('cadastro.edit');
+
+
+
+Route::resource("comum", ComumController::class);
+
+Route::get('/comum', [ComumController::class, 'index'])->name('comum');
+
+Route::get('/comum/create', [ComumController::class, 'create'])->name('comuns.create');
+
+Route::get('/comum/{id}/edit', [ComumController::class, 'edit'])->name('comuns.edit');
+
+Route::get('/comum/{id}/show', [ComumController::class, 'show'])->name('comuns.show');
+
+Route::delete('/comum/{id}', [ComumController::class, 'destroy'])->name('comuns.destroy');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -56,7 +74,21 @@ Route::post('/operations', [OperationController::class, 'store'])->name('operati
 Route::get('/operations', [OperationController::class, 'operationsindex'])->name('operations.index');
 
 Route::middleware('auth')->group(function () {
-    Route::resource('operations', OperationController::class);
-    // Adicione a rota para detalhes
-    Route::get('operations/{operation}', [OperationController::class, 'show'])->name('operations.show');
+
+Route::resource('operations', OperationController::class);
+ 
+Route::get('operations/{operation}', [OperationController::class, 'show'])->name('operations.show');
 });
+use App\Http\Controllers\VisitorController;
+
+Route::resource('visitors', VisitorController::class)->middleware('auth');
+
+Route::get('visitors/{visitor}', [VisitorController::class, 'show'])->name('visitors.show');
+
+use App\Http\Controllers\ResidentController;
+
+Route::resource('residents', ResidentController::class);
+
+use App\Http\Controllers\OccurrenceController;
+
+Route::resource('occurrences', OccurrenceController::class);

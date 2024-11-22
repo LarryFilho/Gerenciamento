@@ -43,19 +43,24 @@
                     <textarea name="address" id="address" rows="2" class="form-control" placeholder="Endereço do morador...">{{ old('address', $resident->address) }}</textarea><br>
 
                     <label>Data de Entrada:</label><br>
-<input type="date" name="move_in_date" id="move_in_date" class="form-control" 
-    value="{{ old('move_in_date', $resident->move_in_date ? $resident->move_in_date->format('Y-m-d') : '') }}" required><br>
+                    <input type="date" name="move_in_date" id="move_in_date" class="form-control" 
+                    value="{{ old('move_in_date', $resident->move_in_date ? $resident->move_in_date->format('Y-m-d') : '') }}" required><br>
 
-<label>Data de Saída (Opcional):</label><br>
-<input type="date" name="move_out_date" id="move_out_date" class="form-control" 
-    value="{{ old('move_out_date', $resident->move_out_date ? $resident->move_out_date->format('Y-m-d') : '') }}">
-<br>
+                    <label>Alterar a Senha do Morador (opcional):</label><br>
+                    <input type="password" name="nova_senha" id="nova_senha" class="form-control" placeholder="Nova senha (opcional)">
+                    <br>
+
+                    <label>Data de Saída (Opcional):</label><br>
+                    <input type="date" name="move_out_date" id="move_out_date" class="form-control" 
+                        value="{{ old('move_out_date', $resident->move_out_date ? $resident->move_out_date->format('Y-m-d') : '') }}">
+                    <br>
+
                     <input type="submit" value="Atualizar Morador" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
                     
                     <a class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline" href="{{ url('residents') }}">
                         {{ __('Voltar') }}
             </a><br>
-</form>
+    </form>
 
     </div>
     <script>

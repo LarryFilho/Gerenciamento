@@ -84,13 +84,21 @@ class ResidentController extends Controller
             'resident_contact' => 'required|string|max:255',
             'move_in_date' => 'required|date',
             'move_out_date' => 'nullable|date|after_or_equal:move_in_date',
+            'nova_senha' => 'nullable|string|max:255',
         ]);
 
         $document = preg_replace('/\D/', '', $request->resident_document);
         $request->merge(['resident_document' => $document]);
-
         $resident->update($request->all());
-
+    
+        if ($request->filled('nova_senha')) {
+            $user = User::where('name', $resident->resident_name)->first();
+            if ($user) {
+                $user->password = Hash::make($request->nova_senha);
+                $user->save();
+            }
+        }
+    
         return redirect()->route('residents.index')->with('success', 'Morador atualizado com sucesso.');
     }
 

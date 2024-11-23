@@ -15,6 +15,7 @@ class Comum extends Model
         'resident_apto',
         'informacoes_adicionais',
         'data',
+        'user_id',
     ];
 
         public function resident()
@@ -32,6 +33,12 @@ class Comum extends Model
     public function area()
     {
         return $this->belongsTo(Area::class);
+        
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
         
     }
 }

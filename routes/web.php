@@ -44,11 +44,7 @@ Route::get('/comum/{id}/show', [ComumController::class, 'show'])->name('comuns.s
 
 Route::delete('/comum/{id}', [ComumController::class, 'destroy'])->name('comuns.destroy');
 
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [ComumController::class, 'areaComum'])->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 

@@ -1,6 +1,7 @@
-@extends('operations.layout')
+@extends('comuns.layout')
 
 @section('content')
+<body class="
     <div class="container">
         <div class="row" style="margin:20px;">
             <div class="col-12">

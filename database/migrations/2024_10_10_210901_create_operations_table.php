@@ -12,7 +12,8 @@ class CreateOperationsTable extends Migration
             $table->id();
             $table->string('product_name');          
             $table->unsignedBigInteger('user_id');   
-            $table->string('operation_type');          
+            $table->string('operation_type');
+            $table->integer('quantity'); 
             $table->text('description')->nullable();  
             $table->timestamp('operation_date_time');  
             $table->timestamps();

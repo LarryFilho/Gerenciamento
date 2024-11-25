@@ -1,5 +1,4 @@
-@extends('operations.layout')
-
+@extends('comuns.layout')
 @section('content')
 <div class="container">
     <h2>Lista de Ocorrências</h2>

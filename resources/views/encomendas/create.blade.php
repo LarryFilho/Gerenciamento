@@ -1,5 +1,4 @@
-@extends('encomendas.layout')
-
+@extends('comuns.layout')
 @section('content')
 <div class="card" style="margin:20px;">
     <div class="card-header">Criar nova Encomenda</div>

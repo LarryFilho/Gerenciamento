@@ -1,4 +1,4 @@
-@extends('operations.layout')
+@extends('comuns.layout')
 
 @section('content')
 

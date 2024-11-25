@@ -1,9 +1,11 @@
-@extends('operations.layout')
+@extends('comuns.layout')
 
 @section('content')
     <div class="container">
         <h2>Detalhes do Morador</h2>
+        <br/>
 
+    
         <div class="card">
             <div class="card-header">
                 ID do Morador: {{ $resident->id }}

@@ -1,9 +1,9 @@
-@extends('operations.layout')
-
+@extends('comuns.layout')
 @section('content')
 <div class="container">
     <h2>Detalhes da Ocorrência</h2>
-
+    <br/>
+    
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}

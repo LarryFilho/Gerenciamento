@@ -1,8 +1,11 @@
-@extends('operations.layout')
+@extends('comuns.layout')
 
 @section('content')
+
     <div class="container">
-        <h2>Editar Visitante</h2>
+        <h2>Editar Visitante:</h2>
+        <br/>
+    
 
         @if ($errors->any())
             <div class="alert alert-danger">

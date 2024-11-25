@@ -1,9 +1,10 @@
-@extends('operations.layout')
+@extends('comuns.layout')
 
 @section('content')
     <div class="container">
         <h2>Detalhes da Operação</h2>
-
+        <br/>
+    
         <div class="card">
             <div class="card-header">
                 ID da Operação: {{ $operation->id }}

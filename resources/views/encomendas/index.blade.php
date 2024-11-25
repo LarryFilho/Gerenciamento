@@ -1,4 +1,4 @@
-@extends('encomendas.layout')
+@extends('comuns.layout')
 
 @section('content')
     <div class="container">
@@ -37,7 +37,7 @@
                                             <a href="{{ route('cadastro.edit', $item->id) }}" title="Editar Encomenda"><button class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
                                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</button></a>
   
-                                            <form method="POST" action="{{ route('cadastro.destroy', $item->id) }}" accept-charset="UTF-8" style="display:inline" onsubmit="return confirm('Tem certeza que deseja deletar esta encomenda?');">
+                                            <form method="POST" action="{{ route('cadastro.destroy', $item->id) }}" accept-charset="UTF-8" style="display:inline" onsubmit="return confirm('Confirme se a encomenda foi realmente recebida.');">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
                                                 <button type="submit" class="ml-3 inline-flex items-center px-3 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 active:bg-green-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline"

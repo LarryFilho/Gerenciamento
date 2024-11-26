@@ -62,8 +62,8 @@
                         </div>
                     @else
                         @php
-                            // Verifica se o usuário logado tem encomendas
                             $encomendaCount = App\Models\Encomenda::where('user_id', auth()->id())->count();
+                            $teste = App\Models\Comum::where('user_id', auth()->id())->count();
                         @endphp
 
                      
@@ -76,24 +76,18 @@
                                 Não há encomendas para você no momento.
                             </div>
                         @endif
+
+                        @if($teste > 0)
+                            <div class="alert alert-info text-center text-xl font-bold text-green-600 mb-4 bg-green-100 p-6 rounded-lg shadow-md">
+                                    @foreach ($comums as $comum)
+                                        Sua Reserva para a data {{ \Carbon\Carbon::parse($comum->data)->format('d/m/Y') }} do local {{ $comum->area->name }} realizada com Sucesso!!
+                                    @endforeach
+                            </div>
+                        @endif
                     @endrole
                 </div>
-               
             </div>
         </div>
     </div>
+@endsection
 
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 bg-white border-b border-gray-200">
-                    @if($teste > 0)
-                        @foreach ($comums as $comum)
-                            <div class="alert alert-success text-center text-xl font-bold text-green-600 mb-4">
-                                Sua Reserva para a data {{ \Carbon\Carbon::parse($comum->data)->format('d/m/Y') }} do local {{ $comum->area->name }} realizada com Sucesso!!
-                            </div>
-                        @endforeach
-                    @endif
-            </div>
-        </div>
-    </div>
-</x-app-layout>

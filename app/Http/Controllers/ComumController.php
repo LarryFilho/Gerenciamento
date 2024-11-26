@@ -171,7 +171,10 @@ class ComumController extends Controller
             ->select('data', 'area_id')
             ->get();
 
-        return view('dashboard', compact('comums')); 
+        $teste = $comums->count(); 
+
+        return view('dashboard', compact('comums', 'teste'));
+
     }
 
 }

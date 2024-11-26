@@ -7,6 +7,7 @@ use App\Models\Comum;
 use App\Models\Apto;
 use App\Models\Resident;
 use App\Models\Area;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class ComumController extends Controller
@@ -52,20 +53,27 @@ class ComumController extends Controller
             'informacoes_adicionais' => 'nullable|string',
             'data' => 'required|date|after_or_equal:today',
         ]);
-    
+
         $ReservaExistente = Comum::where('area_id', $validated['area_id'])
             ->where('data', $validated['data'])
             ->first();
-    
+
         if ($ReservaExistente) {
             return redirect()->back()->withErrors(['data' => 'Essa Área Comum já está Reservada nessa Data!']);
         }
-    
+
         $resident = Resident::find($validated['resident_id']);
-        $validated['resident_apto'] = $resident->id;
-    
+        if ($resident) {
+            $validated['resident_apto'] = $resident->id;
+
+            $user = User::where('name', $resident->resident_name)->first();
+            if ($user) {
+                $validated['user_id'] = $user->id;
+            }
+        }
+
         Comum::create($validated);
-    
+
         return redirect()->route('comum')->with('success', 'Reserva Realizada com Sucesso!');
     }
     
@@ -116,7 +124,7 @@ class ComumController extends Controller
             'informacoes_adicionais' => 'nullable|string',
             'data' => 'required|date|after_or_equal:today',
         ]);
-
+    
         $ReservaExistente = Comum::where('area_id', $validated['area_id'])
             ->where('data', $validated['data'])
             ->where('id', '!=', $id)
@@ -127,7 +135,15 @@ class ComumController extends Controller
         }
     
         $resident = Resident::find($validated['resident_id']);
-        $validated['resident_apto'] = $resident->id;
+        if ($resident) {
+            $validated['resident_apto'] = $resident->id;
+    
+            // Find the user with the same name as the resident
+            $user = User::where('name', $resident->resident_name)->first();
+            if ($user) {
+                $validated['user_id'] = $user->id;
+            }
+        }
     
         $comum->update($validated);
     
@@ -145,4 +161,17 @@ class ComumController extends Controller
         Comum::destroy($id);
         return redirect('comum')->with('flash_message', 'Deletada!'); 
     }
+
+    public function areaComum()
+    {
+        $userId = auth()->id();
+
+        $comums = Comum::with('area')
+            ->where('user_id', $userId)
+            ->select('data', 'area_id')
+            ->get();
+
+        return view('dashboard', compact('comums')); 
+    }
+
 }

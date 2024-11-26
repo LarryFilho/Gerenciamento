@@ -18,6 +18,7 @@ class CreateResidentsTable extends Migration
             $table->string('address')->nullable();
             $table->date('move_in_date');
             $table->date('move_out_date')->nullable();
+            $table->foreignId('nova_senha')->nullable()->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

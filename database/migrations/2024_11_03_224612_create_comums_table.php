@@ -18,6 +18,7 @@ return new class extends Migration
                 $table->foreignId('resident_apto')->nullable()->constrained('residents')->onDelete('cascade');
                 $table->text('informacoes_adicionais')->nullable();
                 $table->date('data')->nullable();
+                $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
                 $table->timestamps();
             });
         }

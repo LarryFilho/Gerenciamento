@@ -9,7 +9,7 @@
                         <h2>Lista de Visitantes</h2>
                     </div>
                     <div class="card-body">
-                        <a href="{{ route('visitors.create') }}" class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline" title="Registrar Novo Visitante">
+                        <a href="{{ route('visitors.create') }}" class="ml-3 inline-flex items-center px-4 py-2 bg-orange-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline" title="Registrar Novo Visitante">
                             Registrar Novo Visitante
                         </a>
                         <br/>
@@ -40,12 +40,12 @@
                                             <td>{{ $visitor->departure ? \Carbon\Carbon::parse($visitor->departure)->format('H:i') : 'Ainda presente' }}</td>
                                             <td>
                                                 <a href="{{ route('visitors.show', $visitor->id) }}" title="Ver Visitante">
-                                                    <button class="ml-3 inline-flex items-center px-3 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
+                                                    <button class="ml-3 inline-flex items-center px-3 py-2 bg-orange-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
                                                         <i class="fa fa-eye" aria-hidden="true"></i> Detalhes
                                                     </button>
                                                 </a>
                                                 <a href="{{ route('visitors.edit', $visitor->id) }}" title="Editar Visitante">
-                                                    <button class="ml-3 inline-flex items-center px-3 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
+                                                    <button class="ml-3 inline-flex items-center px-3 py-2 bg-orange-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
                                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar
                                                     </button>
                                                 </a>

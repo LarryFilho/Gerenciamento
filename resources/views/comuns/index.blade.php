@@ -8,7 +8,7 @@
                         <h2>Sistema de Reserva de Áreas Comuns</h2>
                     </div>
                     <div class="card-body">
-                        <a href="{{ url('comum/create') }}" class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline" title="Adicionar nova Encomenda">
+                        <a href="{{ url('comum/create') }}" class="ml-3 inline-flex items-center px-4 py-2 bg-orange-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline" title="Adicionar nova Encomenda">
                             Reservar uma Área Comum
                         </a>
                         <br/>
@@ -35,9 +35,9 @@
                                         <td>{{ $item->area ? $item->area->name : 'N/A' }}</td>
   
                                         <td>
-                                            <a href="{{ route('comuns.show', $item->id) }}" title="Ver Reserva"><button class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
+                                            <a href="{{ route('comuns.show', $item->id) }}" title="Ver Reserva"><button class="ml-3 inline-flex items-center px-4 py-2 bg-orange-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
                                                 <i class="fa fa-eye" aria-hidden="true"></i>Detalhes da Reserva</button></a>
-                                            <a href="{{ route('comuns.edit', $item->id) }}" title="Editar Reserva"><button class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
+                                            <a href="{{ route('comuns.edit', $item->id) }}" title="Editar Reserva"><button class="ml-3 inline-flex items-center px-4 py-2 bg-orange-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
                                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar Reserva</button></a>
   
                                                 <form method="POST" action="{{ route('comuns.destroy', $item->id) }}" accept-charset="UTF-8" style="display:inline" onsubmit="return confirm('Tem certeza que deseja deletar esta encomenda?');">

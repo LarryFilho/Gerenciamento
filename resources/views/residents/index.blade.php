@@ -10,7 +10,7 @@
                         <h2>Lista de Moradores</h2>
                     </div>
                     <div class="card-body">
-                        <a href="{{ route('residents.create') }}" class="ml-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline" title="Registrar Novo Morador">
+                        <a href="{{ route('residents.create') }}" class="ml-3 inline-flex items-center px-4 py-2 bg-orange-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline" title="Registrar Novo Morador">
                             Registrar Novo Morador
                         </a>
                         <br/>
@@ -41,12 +41,12 @@
                                             <td>{{ $resident->move_out_date ? \Carbon\Carbon::parse($resident->move_out_date)->format('d/m/Y') : 'Ainda residindo' }}</td>
                                             <td>
                                                 <a href="{{ route('residents.show', $resident->id) }}" title="Ver Morador">
-                                                    <button class="ml-3 inline-flex items-center px-3 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
+                                                    <button class="ml-3 inline-flex items-center px-3 py-2 bg-orange-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
                                                         <i class="fa fa-eye" aria-hidden="true"></i> Detalhes
                                                     </button>
                                                 </a>
                                                 <a href="{{ route('residents.edit', $resident->id) }}" title="Editar Morador">
-                                                    <button class="ml-3 inline-flex items-center px-3 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
+                                                    <button class="ml-3 inline-flex items-center px-3 py-2 bg-orange-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 no-underline">
                                                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar
                                                     </button>
                                                 </a>
